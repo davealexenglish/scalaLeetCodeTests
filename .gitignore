@@ -1,0 +1,55 @@
+# Gradle
+.gradle/
+build/
+!gradle/wrapper/gradle-wrapper.jar
+
+# IntelliJ IDEA
+.idea/
+*.iml
+*.iws
+*.ipr
+out/
+
+# Eclipse
+.classpath
+.project
+.settings/
+bin/
+
+# macOS
+.DS_Store
+
+# Scala / SBT (in case anyone switches)
+target/
+*.class
+*.log
+.cache
+.history
+.lib/
+dist/*
+project/boot/
+project/plugins/project/
+
+# Metals / Bloop
+.metals/
+.bloop/
+metals.sbt
+
+# Build Server Protocol
+.bsp/
+
+# Scala CLI
+.scala-build/
+
+# SBT meta-build
+project/project/
+project/target/
+
+# VS Code
+.vscode/
+
+# Logs and temp files
+*.log
+*.swp
+*.swo
+*~
