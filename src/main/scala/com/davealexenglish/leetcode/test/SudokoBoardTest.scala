@@ -1,14 +1,9 @@
 package com.davealexenglish.leetcode.test
 
-object SudokoBoardSolution {
-  trait BacktrackingState[State, Candidate] {
-    def isSolution: Boolean
-    def getCandidates: List[Candidate]
-    def applyCandidate(candidate: Candidate): BacktrackingState[State, Candidate]
-    def getResult: State
-  }
+import com.davealexenglish.leetcode.test.backtracking.{BacktrackingState, Backtracker, Validator}
 
-  trait SudokuValidator {
+object SudokoBoardSolution {
+  trait SudokuValidator extends Validator {
     protected val board: Array[Array[Char]]
 
     protected def validateRow(r: Int): Boolean = {
@@ -26,26 +21,10 @@ object SudokoBoardSolution {
       !values.filter(_ != '.').groupBy(identity).exists(_._2.length > 1)
     }
 
-    def isValid(): Boolean =
+    override def isValid: Boolean =
       (0 until 9).forall(validateRow(_)) &&
         (0 until 9).forall(validateCol(_)) &&
         (0 until 9 by 3).forall(r => (0 until 9 by 3).forall(c => validateCell(r, c)))
-  }
-
-  object Backtracker {
-    def findAllSolutions[State, Candidate](
-      initialState: BacktrackingState[State, Candidate]
-    ): List[BacktrackingState[State, Candidate]] = {
-      def backtrack(
-        state: BacktrackingState[State, Candidate]
-      ): List[BacktrackingState[State, Candidate]] =
-        if (state.isSolution) {
-          List(state)
-        } else {
-          state.getCandidates.flatMap(candidate => backtrack(state.applyCandidate(candidate)))
-        }
-      backtrack(initialState)
-    }
   }
 
   class SudokuBoard(val board: Array[Array[Char]])
@@ -53,7 +32,7 @@ object SudokoBoardSolution {
       with SudokuValidator {
 
     def isSolution: Boolean =
-      !board.exists(_.contains('.')) && isValid()
+      !board.exists(_.contains('.')) && isValid
 
     def getCandidates: List[Char] =
       findEmptyCell() match {

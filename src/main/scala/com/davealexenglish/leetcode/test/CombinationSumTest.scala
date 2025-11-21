@@ -1,34 +1,13 @@
 package com.davealexenglish.leetcode.test
 
+import com.davealexenglish.leetcode.test.backtracking.{BacktrackingState, Backtracker, Validator}
+
 class CombinationSumTest {
-  trait BacktrackingState[State, Candidate] {
-    def isSolution: Boolean
-    def getCandidates: List[Candidate]
-    def applyCandidate(candidate: Candidate): BacktrackingState[State, Candidate]
-    def getResult: State
-  }
-
-  object Backtracker {
-    def findAllSolutions[State, Candidate](
-      initialState: BacktrackingState[State, Candidate]
-    ): List[BacktrackingState[State, Candidate]] = {
-      def backtrack(
-        state: BacktrackingState[State, Candidate]
-      ): List[BacktrackingState[State, Candidate]] =
-        if (state.isSolution) {
-          List(state)
-        } else {
-          state.getCandidates.flatMap(candidate => backtrack(state.applyCandidate(candidate)))
-        }
-      backtrack(initialState)
-    }
-  }
-
-  trait CombinationValidator {
+  trait CombinationValidator extends Validator {
     protected val remaining: Int
     protected val combination: List[Int]
 
-    def isValid: Boolean = remaining >= 0
+    override def isValid: Boolean = remaining >= 0
   }
 
   class CombinationState(
