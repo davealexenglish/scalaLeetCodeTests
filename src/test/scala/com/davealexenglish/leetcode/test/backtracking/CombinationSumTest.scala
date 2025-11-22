@@ -1,6 +1,6 @@
-package com.davealexenglish.leetcode.test
+package com.davealexenglish.leetcode.test.backtracking
 
-import com.davealexenglish.leetcode.test.backtracking.{BacktrackingState, Backtracker, Validator}
+import com.davealexenglish.leetcode.test.backtracking.{Backtracker, BacktrackingState, Validator}
 
 class CombinationSumTest {
   trait CombinationValidator extends Validator {
