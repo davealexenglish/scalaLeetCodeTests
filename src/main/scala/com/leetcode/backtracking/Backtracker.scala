@@ -1,4 +1,4 @@
-package com.davealexenglish.leetcode.test.backtracking
+package com.leetcode.backtracking
 
 object Backtracker {
   def findAllSolutions[State, Candidate](

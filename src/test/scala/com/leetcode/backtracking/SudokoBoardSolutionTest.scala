@@ -1,6 +1,4 @@
-package com.davealexenglish.leetcode.test.backtracking
-
-import com.davealexenglish.leetcode.test.backtracking.{Backtracker, BacktrackingState, Validator}
+package com.leetcode.backtracking
 
 object SudokoBoardSolution {
   trait SudokuValidator extends Validator {

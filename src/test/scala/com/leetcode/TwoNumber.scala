@@ -1,3 +1,5 @@
+package com.leetcode
+
 //package com.davealexenglish.leetcode.test
 //
 //import org.scalatest.funsuite.AnyFunSuite
